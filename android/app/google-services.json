@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "901114992121",
+    "project_id": "yippiechat",
+    "storage_bucket": "yippiechat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:901114992121:android:dc2439713f4d905db59928",
+        "android_client_info": {
+          "package_name": "com.example.yippiechat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "901114992121-58e0id877v0km71nmir8fqts9keqfd85.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeFcjVeVh9WnPmt8rTX-zqavkxn9Edwjc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "901114992121-58e0id877v0km71nmir8fqts9keqfd85.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
