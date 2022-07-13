@@ -21,7 +21,7 @@ class _AuthScreenState extends State<AuthScreen> {
     String email,
     String password,
     String userName,
-    File image,
+    File? image,
     bool isLogin,
   ) async {
     UserCredential userCredential;
@@ -41,7 +41,7 @@ class _AuthScreenState extends State<AuthScreen> {
             .child('user_image')
             .child('${userCredential.user!.uid}.jpg');
 
-        await ref.putFile(image);
+        await ref.putFile(image!);
         final url = await ref.getDownloadURL();
 
         await FirebaseFirestore.instance
@@ -58,8 +58,10 @@ class _AuthScreenState extends State<AuthScreen> {
       if (e.message != null) {
         message = e.message!;
       }
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
+          duration: Duration(seconds: 2),
           backgroundColor: Theme.of(context).colorScheme.secondary,
           content: Text(message),
         ),

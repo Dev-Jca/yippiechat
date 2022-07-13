@@ -10,7 +10,7 @@ class AuthForm extends StatefulWidget {
     String email,
     String password,
     String userName,
-    File image,
+    File? image,
     bool isLogin,
   ) submitFn;
 
@@ -52,7 +52,7 @@ class _AuthFormState extends State<AuthForm> {
         _userEmail.trim(),
         _userPassword.trim(),
         _userName.trim(),
-        File(_userImageFile!.path),
+        _userImageFile,
         _isLogin,
       );
     }
@@ -76,6 +76,9 @@ class _AuthFormState extends State<AuthForm> {
                       imagePickFn: _pickedImage,
                     ),
                   TextFormField(
+                    autocorrect: false,
+                    textCapitalization: TextCapitalization.none,
+                    enableSuggestions: false,
                     key: const ValueKey('email'),
                     validator: (value) {
                       if (value!.isEmpty || !value.contains('@')) {
@@ -93,6 +96,9 @@ class _AuthFormState extends State<AuthForm> {
                   ),
                   if (!_isLogin)
                     TextFormField(
+                      autocorrect: true,
+                      textCapitalization: TextCapitalization.words,
+                      enableSuggestions: false,
                       key: const ValueKey('username'),
                       validator: (value) {
                         if (value!.isEmpty || value.length < 4) {

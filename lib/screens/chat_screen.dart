@@ -14,6 +14,7 @@ class ChatScreen extends StatelessWidget {
         title: const Text('YippieChat'),
         actions: [
           DropdownButton<String>(
+            underline: Container(),
             items: [
               DropdownMenuItem(
                 value: 'logout',
