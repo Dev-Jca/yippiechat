@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:yippiechat/screens/auth_screen.dart';
 import './screens/chat_screen.dart';
@@ -13,31 +14,38 @@ void main() async {
 
   runApp(
     MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ButtonStyle(
-            shape: MaterialStateProperty.all<OutlinedBorder>(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
-                side: BorderSide(color: Colors.pink),
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ButtonStyle(
+              shape: MaterialStateProperty.all<OutlinedBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                  side: const BorderSide(color: Colors.pink),
+                ),
               ),
             ),
           ),
+          // buttonTheme: const ButtonThemeData(
+          //   buttonColor: Colors.pink,
+          //   textTheme: ButtonTextTheme.primary,
+          // ),
+          colorScheme: ColorScheme.fromSwatch().copyWith(
+            primary: Colors.pink,
+            secondary: Colors.deepPurple,
+            background: Colors.pink,
+            brightness: Brightness.light,
+          ),
         ),
-        // buttonTheme: const ButtonThemeData(
-        //   buttonColor: Colors.pink,
-        //   textTheme: ButtonTextTheme.primary,
-        // ),
-        colorScheme: ColorScheme.fromSwatch().copyWith(
-          primary: Colors.pink,
-          secondary: Colors.deepPurple,
-          background: Colors.pink,
-          brightness: Brightness.light,
-        ),
-      ),
-      home: const AuthScreen(),
-    ),
+        home: StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return const ChatScreen();
+            }
+            return const AuthScreen();
+          },
+        )),
   );
 }
